@@ -17,3 +17,8 @@ Currently, two official plugins are available:
   <li>Hora / Fecha</li>
   <li>Calculadora</li>
 </ul>
+
+<h2>Inicio con menu_pokedex</h2>
+<p>Acceder a alguno de los enlaces y renderizar el contenido en el formato pokedex</p>
+<h2>Acceder a búsqueda</h2>
+<p></p>
