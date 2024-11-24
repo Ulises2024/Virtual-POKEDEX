@@ -2,7 +2,8 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'], // Rutas a tus archivos
   theme: {
-    extend: {},
+    extend: {
+    },
   },
   plugins: [],
 };

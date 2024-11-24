@@ -1,3 +1,148 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'EarlyGameBoy';
+    src: url('../src/font/Early\ GameBoy.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+body {
+    font-family: 'EarlyGameBoy', sans-serif;
+    background-image: url('./img/fondo_body.png');
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    color: #f1f1f1;
+    /* overflow: hidden; */
+  }
+
+.cuerpo{
+    grid-template-columns: 1fr 80vw 1fr;
+}
+
+.pokedex {
+    position: relative;
+    width: 100vw; /* Ancho del viewport */
+    height: 100vh; /* Alto del viewport */
+    background-image: url('./img/fondo_pokedex.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+   
+}
+
+
+.pantalla1{
+    position: absolute;/* Fija la posición dentro de .pokedex */
+    background-color: rgb(8, 8, 8);
+    top: 29.5%;
+    left: 9.2%;
+    height: 32vh;
+    width: 35%;
+    border-radius: 10px;
+    border: solid 3px black;
+    overflow: hidden; /* Desactiva el scroll */
+}
+
+/* Estilo para el nombre del Pokémon */
+.nombre_img {
+    color: #22C4EA; /* Amarillo Pokémon */
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+    font-family: 'EarlyGameBoy', sans-serif;
+
+}
+
+/* Imagen del Pokémon */
+.pant1_img img {
+    image-rendering: pixelated;
+    width: auto; 
+    height: 15vw; 
+    border-radius: 5px;
+}
+
+.pantalla2{
+    position: absolute; 
+    background-color: rgb(8, 8, 8);
+    top: 33%;
+    left: 60%;
+    height: 18vh;
+    width: 25vw;
+    border-radius: 10px;
+    border: solid 3px black;   
+    overflow: hidden; 
+    overflow-y: auto;
+}
+
+.pantalla3{
+    position: absolute; 
+    background-color: #22C4EA;
+    height: 12vh;
+    width: 19vw;
+    bottom: 9%;
+    left: 8.5%;
+    border-radius: 10px;
+    border: solid 3px black;    
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 1%;
+}
+
+
+/* Estilos para los hijos de pantalla4 */
+.pantalla4{
+    position: absolute;
+    border: white 2px solid;
+    top: 80%;
+    left: 58.5%;
+    width: 35%;
+    height: 12%;
+    border-radius: 2vw;
+
+}
+.pantalla4 .etiqueta_tipo {
+    position: absolute;
+    background-color: #22C4EA;
+    border-radius: 20vw;
+    padding-left: 1%;
+    border:4% #f1f1f1 solid;
+    font-size: small;
+    top: -20%;
+    left: 10%;
+    z-index: 100;
+}
+.pantalla4 .pant4_1 {
+    background-color: #E3E3E3;
+    bottom: 10%;
+    left: 76%;
+    height: 8.5vh;
+    width: 12.5vw;
+    border-radius: 10px;
+    border: solid 3px black;
+    position: absolute;
+    overflow: hidden; 
+    padding: 1%;
+
+    overflow-y: auto;
+}
+
+.pantalla4 .pant4_2 {
+    position: absolute; 
+    background-color: black;
+    bottom: 16%;
+    left: 3%;
+    height: 8vh;
+    width: 12.5vw;
+    border-radius: 10px;
+    border: solid 3px  white;
+    overflow: hidden; 
+
+    padding: 1%;
+    overflow-y: auto;
+}
+
+
