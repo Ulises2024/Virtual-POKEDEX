@@ -3,11 +3,14 @@ import axios from "axios";
 
 export default function Buscar({ onPokemonFetched }) {
   const [pokemonName, setPokemonName] = useState("");
+  const [data, setData] = useState(null); // Declara un estado para "data"
+  
 
   const buscarPokemon = async () => {
     try {
       const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
       onPokemonFetched(response.data);
+      
     } catch (error) {
       console.error("Error al buscar el Pokémon:", error);
     }

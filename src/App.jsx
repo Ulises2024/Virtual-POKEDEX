@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Menu from "./components/Menu/Menu";
 import Buscar from "./components/Buscar/Buscar";
+import Estadistica from "./components/Estadistica/Estadist"
 import './index.css';
+import { colorByType } from "./constants/colotype";
 
 
 const App = () => {
@@ -69,13 +71,23 @@ const App = () => {
     );
 
     setPantalla4bContent(
-      <div>
-        <h3 className="text-lg font-semibold">Tipos:</h3>
-        <ul>
-          {data.types.map((type) => (
-            <li key={type.type.name}>{type.type.name}</li>
-          ))}
-        </ul>
+      <div className="grid grid-cols-2 gap-2">
+        {data.types.map((tipo, index) => {
+          const typeInfo = colorByType[tipo.type.name];
+          return (
+            <div
+              key={index}
+              className={`flex items-center gap-2 p-2 rounded text-white font-bold ${typeInfo.bg}`}
+            >
+              <img
+                src={typeInfo.icon}
+                alt={`${tipo.type.name} icon`}
+                className="w-6 h-6"
+              />
+              <span>{tipo.type.name.toUpperCase()}</span>
+            </div>
+          );
+        })}
       </div>
     );
   };

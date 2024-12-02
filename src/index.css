@@ -120,7 +120,7 @@ body {
     bottom: 10%;
     left: 76%;
     height: 8.5vh;
-    width: 12.5vw;
+    width: 1.5vw;
     border-radius: 10px;
     border: solid 3px black;
     position: absolute;
@@ -135,8 +135,8 @@ body {
     background-color: black;
     bottom: 16%;
     left: 3%;
-    height: 8vh;
-    width: 12.5vw;
+    height: 18vh;
+    width: 28.5vw;
     border-radius: 10px;
     border: solid 3px  white;
     overflow: hidden; 
