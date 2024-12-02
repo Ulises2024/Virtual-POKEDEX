@@ -4,7 +4,7 @@ import Buscar from "./components/Buscar/Buscar";
 import './index.css';
 
 
-const Pokedex = () => {
+const App = () => {
   // Definir funciones antes de los estados
   const handleMenuClick = (option) => {
     switch (option) {
@@ -127,4 +127,4 @@ const Pokedex = () => {
   );
 };
 
-export default Pokedex;
+export default App;
