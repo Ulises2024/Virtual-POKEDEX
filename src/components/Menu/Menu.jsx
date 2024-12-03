@@ -1,5 +1,5 @@
 import React from "react";
-
+import './Menu.css'
 const Menu = ({ onOptionClick }) => {
   return (
     <div className="menu_conf flex flex-col items-center p-4 bg-gray-800 rounded-lg shadow-lg">
@@ -10,7 +10,7 @@ const Menu = ({ onOptionClick }) => {
             className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg shadow-md"
             onClick={() => onOptionClick(1)}
           >
-            Opción 1
+            Páginas / Búsqueda
           </button>
         </li>
         <li>
@@ -18,7 +18,7 @@ const Menu = ({ onOptionClick }) => {
             className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg shadow-md"
             onClick={() => onOptionClick(2)}
           >
-            Opción 2
+            Favoritos
           </button>
         </li>
         <li>
@@ -26,7 +26,7 @@ const Menu = ({ onOptionClick }) => {
             className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg shadow-md"
             onClick={() => onOptionClick(3)}
           >
-            Opción 3
+            Clasificador
           </button>
         </li>
         <li>
@@ -34,7 +34,7 @@ const Menu = ({ onOptionClick }) => {
             className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg shadow-md"
             onClick={() => onOptionClick(4)}
           >
-            Opción 4
+            Lista de capturas
           </button>
         </li>
         <li>
@@ -42,7 +42,7 @@ const Menu = ({ onOptionClick }) => {
             className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg shadow-md"
             onClick={() => onOptionClick(5)}
           >
-            Opción 5
+            Hora / Fecha
           </button>
         </li>
       </ul>

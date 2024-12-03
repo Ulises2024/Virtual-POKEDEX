@@ -28,7 +28,6 @@ body {
     position: relative;
     width: 100vw; /* Ancho del viewport */
     height: 100vh; /* Alto del viewport */
-    background-image: url('./img/fondo_pokedex.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -48,6 +47,43 @@ body {
     overflow: hidden; /* Desactiva el scroll */
 }
 
+.pantallaTipo {
+    position: absolute;
+    top: 61.3%;
+    left: 20%;
+    width: 19.3vw;
+    height: 6vh;
+    
+    overflow: hidden; /* Evita el desbordamiento */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pantallaTipo .pant_tipo_hijo {
+    position: relative; /* Cambiado de absolute a relative */
+    display: flex; /* Alinea los elementos de forma horizontal */
+    flex-wrap: wrap; /* Permite que las etiquetas pasen a la siguiente fila */
+    gap: 4px; /* Añade un poco de espacio entre las etiquetas */
+    width: 100%; /* Asegura que las etiquetas respeten el ancho del contenedor */
+    height: auto; /* Ajusta automáticamente la altura según el contenido */
+   
+}
+
+.btn_volverPoke{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 66%;
+    left: 70%;
+    border-radius: 15px;
+    border: #f1f1f1 solid 3px;
+    
+    height: 6vh;
+    width: 6vw;
+}
+
 /* Estilo para el nombre del Pokémon */
 .nombre_img {
     color: #22C4EA; /* Amarillo Pokémon */
@@ -61,9 +97,13 @@ body {
 .pant1_img img {
     image-rendering: pixelated;
     width: auto; 
-    height: 15vw; 
+    height: 13vw; 
     border-radius: 5px;
 }
+
+
+
+
 
 .pantalla2{
     position: absolute; 
@@ -79,48 +119,23 @@ body {
 }
 
 .pantalla3{
-    position: absolute; 
-    background-color: #22C4EA;
-    height: 12vh;
-    width: 19vw;
+    position: absolute;
+    height: 10.4vh;
+    width: 12.7vw;
     bottom: 9%;
-    left: 8.5%;
-    border-radius: 10px;
+    left: 14.2%;
+    border-radius: 1vw;
     border: solid 3px black;    
-    overflow: hidden;
-    overflow-y: auto;
     padding: 1%;
+    font-size: 85%;
 }
 
-
-/* Estilos para los hijos de pantalla4 */
-.pantalla4{
-    position: absolute;
-    border: white 2px solid;
-    top: 80%;
-    left: 58.5%;
-    width: 35%;
-    height: 12%;
-    border-radius: 2vw;
-
-}
-.pantalla4 .etiqueta_tipo {
-    position: absolute;
-    background-color: #22C4EA;
-    border-radius: 20vw;
-    padding-left: 1%;
-    border:4% #f1f1f1 solid;
-    font-size: small;
-    top: -20%;
-    left: 10%;
-    z-index: 100;
-}
 .pantalla4 .pant4_1 {
     background-color: #E3E3E3;
     bottom: 10%;
     left: 76%;
     height: 8.5vh;
-    width: 1.5vw;
+    width: 18.5vw;
     border-radius: 10px;
     border: solid 3px black;
     position: absolute;
@@ -130,19 +145,6 @@ body {
     overflow-y: auto;
 }
 
-.pantalla4 .pant4_2 {
-    position: absolute; 
-    background-color: black;
-    bottom: 16%;
-    left: 3%;
-    height: 18vh;
-    width: 28.5vw;
-    border-radius: 10px;
-    border: solid 3px  white;
-    overflow: hidden; 
 
-    padding: 1%;
-    overflow-y: auto;
-}
 
 

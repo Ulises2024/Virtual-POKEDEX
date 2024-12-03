@@ -29,7 +29,7 @@ export default function Buscar({ onPokemonFetched }) {
           placeholder="Nombre del Pokémon"
           value={pokemonName}
           onChange={(e) => setPokemonName(e.target.value)}
-          className="col-span-10 border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="col-span-10 border text-black p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
 
         {/* Botón con SVG */}
