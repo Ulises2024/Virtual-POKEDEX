@@ -2,7 +2,7 @@ import React from "react";
 import './Menu.css'
 const Menu = ({ onOptionClick }) => {
   return (
-    <div className="menu_conf flex flex-col items-center p-4 bg-gray-800 rounded-lg shadow-lg">
+    <div className="menu_conf flex flex-col items-center p-4  rounded-lg shadow-lg">
       <h2 className="text-white text-xl font-bold mb-4">Menú</h2>
       <ul className="space-y-3 w-full">
         <li>

@@ -44,7 +44,8 @@ body {
     width: 35%;
     border-radius: 10px;
     border: solid 3px black;
-    overflow: hidden; /* Desactiva el scroll */
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 .pantallaTipo {
@@ -70,19 +71,9 @@ body {
    
 }
 
-.btn_volverPoke{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 66%;
-    left: 70%;
-    border-radius: 15px;
-    border: #f1f1f1 solid 3px;
-    
-    height: 6vh;
-    width: 6vw;
-}
+
+
+
 
 /* Estilo para el nombre del Pokémon */
 .nombre_img {

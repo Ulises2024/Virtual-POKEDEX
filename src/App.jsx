@@ -1,33 +1,31 @@
 import React, { useState } from "react";
 import Menu from "./components/Menu/Menu";
 import Buscar from "./components/Buscar/Buscar";
-import Estadistica from "./components/Estadistica/Estadist"
+import Estadistica from "./components/Estadistica/Estadist";
 import './index.css';
 import { colorByType } from "./constants/colotype";
-
+import BtnVolver from "./components/Botones/VolverBuscar/BtnVolver";
+import BtnSalir from "./components/Botones/SalirMenu/BtnSalir";  // Importa BtnSalir
 
 const App = () => {
-  // Definir funciones antes de los estados
   const handleMenuClick = (option) => {
     switch (option) {
       case 1:
-        // Mostrar el componente de búsqueda y manejar los datos
         setPantalla1Content(
           <Buscar
             onPokemonFetched={(data) => {
-              updatePantallas(data); // Actualiza las pantallas con los datos del Pokémon
+              updatePantallas(data);
             }}
           />
         );
         break;
       default:
         setPantalla1Content(<Menu onOptionClick={handleMenuClick} />);
-        resetPantallas(); // Limpia las pantallas al volver al menú
+        resetPantallas();
     }
   };
 
   const updatePantallas = (data) => {
-    // Actualizar el contenido en cada pantalla basado en los datos obtenidos
     setPantalla1Content(
       <div className="text-center pant1_img ">
         <h2 className="text-2xl font-bold capitalize text-black nombre_img">{data.name}</h2>
@@ -79,7 +77,6 @@ const App = () => {
           <strong>Peso:</strong> {data.weight / 10} kg
         </p>
       </div>
-      
     );
 
     setPantalla4aContent(
@@ -117,7 +114,6 @@ const App = () => {
   };
 
   const resetPantallas = () => {
-    // Limpia todas las pantallas excepto la principal
     setPantallaTipoContent(null);
     setPantalla2Content(null);
     setPantalla3Content(null);
@@ -125,7 +121,16 @@ const App = () => {
     setPantalla4bContent(null);
   };
 
-  // Estados para cada pantalla
+  const salirAMenuInicio = () => {
+    setPantalla1Content(<Menu onOptionClick={handleMenuClick} />); // Renderiza el menú inicial
+    setPantallaTipoContent(null);
+    setPantalla2Content(null);
+    setPantalla3Content(null);
+    setPantalla4aContent(null);
+    setPantalla4bContent(null);
+  };
+
+
   const [pantalla1Content, setPantalla1Content] = useState(<Menu onOptionClick={handleMenuClick} />);
   const [pantallaTipoContent, setPantallaTipoContent] = useState(null);
   const [pantalla2Content, setPantalla2Content] = useState(null);
@@ -145,51 +150,38 @@ const App = () => {
                 alt="img_pkdx"
                 className="pokedex"
               />
+              
               <div className="absolute inset-0 grid grid-cols-2 grid-rows-3 gap-2">
-                
+                 
                 <div className="pant1Container grid grid-rows-1 gap-0">
-                  {/* Botón para elegir un nuevo Pokémon */}
-                  {/* Renderizado del botón basado en la condición */}
-                  {pantalla1Content && pantallaTipoContent && (
-                    <button
-                      className="btn btn_volverPoke bg-blue-500 text-white px-2 py-2 rounded shadow hover:bg-blue-700 transition duration-300"
-                      onClick={() => {
-                        setPantalla1Content(
-                          <Buscar
-                            onPokemonFetched={(data) => {
-                              updatePantallas(data); // Actualiza las pantallas con los datos del Pokémon
-                            }}
-                          />
-                        );
-                        // Resetear otras pantallas después de asignar nuevo contenido
-                        setPantallaTipoContent(null);
-                        setPantalla2Content(null);
-                        setPantalla3Content(null);
-                        setPantalla4aContent(null);
-                        setPantalla4bContent(null);
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="30"
-                        height="30"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="icon icon-tabler icons-tabler-outline icon-tabler-arrow-back-up"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M9 14l-4 -4l4 -4" />
-                        <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
-                      </svg>
-                    </button>
-                  )}
-
-
+                  {/* Botón salir */}
+                  <BtnSalir
+                    pantalla1Content={pantalla1Content}
+                    setPantalla1Content={setPantalla1Content}
+                    setPantallaTipoContent={setPantallaTipoContent}
+                    setPantalla2Content={setPantalla2Content}
+                    setPantalla3Content={setPantalla3Content}
+                    setPantalla4aContent={setPantalla4aContent}
+                    setPantalla4bContent={setPantalla4bContent}
+                    Buscar={Buscar}
+                    handleMenuClick={handleMenuClick} // Pasar la función handleMenuClick
+                  />
+                  {/* Renderizar Vlver a buscar pokemon */}
+                  <BtnVolver
+                    pantalla1Content={pantalla1Content}
+                    pantallaTipoContent={pantallaTipoContent}
+                    setPantalla1Content={setPantalla1Content}
+                    setPantallaTipoContent={setPantallaTipoContent}
+                    setPantalla2Content={setPantalla2Content}
+                    setPantalla3Content={setPantalla3Content}
+                    setPantalla4aContent={setPantalla4aContent}
+                    setPantalla4bContent={setPantalla4bContent}
+                    Buscar={Buscar}
+                    updatePantallas={updatePantallas}
+                  />
+                  
                   <div className="pantalla1 flex items-center justify-center">
+                   
                     {pantalla1Content}
                   </div>
                   <div className="pantallaTipo flex items-center justify-center p-2 grid grid-cols-2">
@@ -202,7 +194,6 @@ const App = () => {
                   <div className="pant4_1">{pantalla4aContent}</div>
                   <div className="pant4_2">{pantalla4bContent}</div>
                 </div>
-                
               </div>
             </div>
           </div>
