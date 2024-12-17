@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Menu from "./components/Menu/Menu";
 import Buscar from "./components/Buscar/Buscar";
-import Estadistica from "./components/Estadistica/Estadist";
 import './index.css';
 import { colorByType } from "./constants/colotype";
 import BtnVolver from "./components/Botones/VolverBuscar/BtnVolver";
 import BtnSalir from "./components/Botones/SalirMenu/BtnSalir";  // Importa BtnSalir
+import PokemonLocations from "./components/PokemonLocations/PokemonLocations";
+import PokeHabilidad from "./components/PokeHabilidad/PokeHabilidad";
+import BtnFavorito from "./components/Botones/Favoritos/BtnFavorito";
 
 const App = () => {
   const handleMenuClick = (option) => {
@@ -26,6 +28,7 @@ const App = () => {
   };
 
   const updatePantallas = (data) => {
+    // Configura pantalla1Content
     setPantalla1Content(
       <div className="text-center pant1_img ">
         <h2 className="text-2xl font-bold capitalize text-black nombre_img">{data.name}</h2>
@@ -33,64 +36,8 @@ const App = () => {
       </div>
     );
 
+    // Configura pantallaTipoContent
     setPantallaTipoContent(
-      <div className="flex gap-2">
-        {data.types.map((tipo, index) => {
-          const typeInfo = colorByType[tipo.type.name];
-          return (
-            <div
-              key={index}
-              className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-white  text-sm ${typeInfo.bg}`}
-              style={{ minWidth: 'fit-content' }}
-            >
-              <img
-                src={typeInfo.icon}
-                alt={`${tipo.type.name} icon`}
-                className="w-5 h-5"
-              />
-              <span className="font-bold">{tipo.type.name.toUpperCase()}</span>
-            </div>
-          );
-        })}
-      </div>
-    );
-
-    setPantalla2Content(
-      <div>
-        <h3 className="title_text-lg font-semibold">Estadísticas:</h3>
-        <ul>
-          {data.stats.map((stat) => (
-            <li key={stat.stat.name}>
-              <strong>{stat.stat.name}:</strong> {stat.base_stat}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-
-    setPantalla3Content(
-      <div className="text-center font-semibold">
-        <p>
-          <strong>Altura:</strong> {data.height / 10} m
-        </p>
-        <p>
-          <strong>Peso:</strong> {data.weight / 10} kg
-        </p>
-      </div>
-    );
-
-    setPantalla4aContent(
-      <div>
-        <h3 className="text-lg font-semibold">Habilidades:</h3>
-        <ul className="list-disc list-inside">
-          {data.abilities.map((ability) => (
-            <li key={ability.ability.name}>{ability.ability.name}</li>
-          ))}
-        </ul>
-      </div>
-    );
-
-    setPantalla4bContent(
       <div className="flex gap-2">
         {data.types.map((tipo, index) => {
           const typeInfo = colorByType[tipo.type.name];
@@ -110,7 +57,85 @@ const App = () => {
           );
         })}
       </div>
+      );
+
+      // Verifica si ambas pantallas están activas después de establecer sus estados
+      if (data.name && data.id) {
+        setPantalla4bContent(
+          <div className="p-4">
+            <h5 className="text-sm text-white text-center mb-4">
+              Ubicaciones del Pokémon
+            </h5>
+            <PokemonLocations pokemonId={data.id} />
+          </div>
+        );
+      }
+
+
+
+
+    setPantalla2Content(
+      
+      <div>
+        <h3 className="title_text-md ">Estadísticas:</h3>
+        <hr /><br />
+        <div className="">
+        <p>
+          <strong>Altura:</strong> {data.height / 10} m
+        </p>
+        <p>
+          <strong>Peso:</strong> {data.weight / 10} kg
+        </p>
+      </div>
+      <br />
+        
+        <ul>
+          {data.stats.map((stat) => (
+            <li key={stat.stat.name}>
+              <strong>{stat.stat.name}:</strong> {stat.base_stat}
+            </li>
+          ))}
+        </ul>
+      </div>
     );
+
+    setPantalla3Content(
+      <div>
+        <h3 className="text-lg font-semibold">Habilidades:</h3>
+        <ul className="list-disc list-inside">
+          {data.abilities.map((ability) => (
+            <li key={ability.ability.name}>{ability.ability.name}</li>
+          ))}
+        </ul>
+      </div>
+    );
+      // Verifica si ambas pantallas están activas después de establecer sus estados
+      if (data.name && data.id) {
+        setPantalla3Content(
+          <div className="p-2">
+            <PokeHabilidad abilityIdOrName={data.id} />
+          </div>
+        );
+        }
+
+    setPantalla4aContent(
+      <div>
+        <h3 className="text-lg font-semibold">Habilidades:</h3>
+        <ul className="list-disc list-inside">
+          {data.abilities.map((ability) => (
+            <li key={ability.ability.name}>{ability.ability.name}</li>
+          ))}
+        </ul>
+      </div>
+    )
+    // Verifica si ambas pantallas están activas después de establecer sus estados
+    if (data.name && data.id) {
+      setPantalla3Content(
+        <div className="p-2">
+          <PokeHabilidad abilityIdOrName={data.id} />
+        </div>
+      );
+      }
   };
 
   const resetPantallas = () => {
@@ -138,24 +163,36 @@ const App = () => {
   const [pantalla4aContent, setPantalla4aContent] = useState(null);
   const [pantalla4bContent, setPantalla4bContent] = useState(null);
 
+
+
+  const [pokemonData, setPokemonData] = useState(null);
+
+  const [favoritos, setFavoritos] = useState([]);
+
+  const agregarAFavoritos = (pokeId) => {
+    if (!favoritos.includes(pokeId)) {
+      setFavoritos([...favoritos, pokeId]);
+    }
+  };
+
   return (
-    <section>
-      <main className="m-4 max-w-screen-lg mx-auto">
-        <div className="cuerpo grid">
-          <div className="col_izq"></div>
-          <div className="col_central">
-            <div className="relative p-4 flex justify-center">
-              <img
-                src="./src/img/poke2.png"
-                alt="img_pkdx"
-                className="pokedex"
-              />
-              
-              <div className="absolute inset-0 grid grid-cols-2 grid-rows-3 gap-2">
-                 
-                <div className="pant1Container grid grid-rows-1 gap-0">
-                  {/* Botón salir */}
-                  <BtnSalir
+
+    <main>
+      <div className="relative min-h-screen">
+  {/* <!-- Contenedor Principal --> */}
+  <div className="flex flex-col md:flex-row h-full">
+    {/* <!-- Columna Izquierda --> */}
+    <div className="hidden md:block md:min-w-[50px] lg:min-w-[80px] p-2">
+      <div className="h-full">Columna Izquierda</div>
+    </div>
+    {/* <!-- Columna Central --> */}
+    <div className="pokedex flex-grow  md:bg-[url('./src/img/poke2.png')] md:bg-no-repeat md:bg-center md:bg-contain p-4">
+      {/* <!-- Contenido ajustado a la plantilla --> */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 h-full">
+        {/* <!-- Fila 1 --> */}
+        <div className="border p-2">Div 1
+           {/* Botón salir */}
+           <BtnSalir
                     pantalla1Content={pantalla1Content}
                     setPantalla1Content={setPantalla1Content}
                     setPantallaTipoContent={setPantallaTipoContent}
@@ -179,28 +216,72 @@ const App = () => {
                     Buscar={Buscar}
                     updatePantallas={updatePantallas}
                   />
-                  
-                  <div className="pantalla1 flex items-center justify-center">
-                   
-                    {pantalla1Content}
-                  </div>
-                  <div className="pantallaTipo flex items-center justify-center p-2 grid grid-cols-2">
-                    <div className="pant_tipo_hijo grid grid-rows-1">{pantallaTipoContent}</div>
-                  </div>
-                </div>
-                <div className="pantalla2">{pantalla2Content}</div>
-                <div className="pantalla3">{pantalla3Content}</div>
-                <div className="pantalla4">
-                  <div className="pant4_1">{pantalla4aContent}</div>
-                  <div className="pant4_2">{pantalla4bContent}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col_der"></div>
+                  <BtnFavorito  
+                    pokeId={pokemonData ? pokemonData.id : null} // ID del Pokémon
+                    agregarAFavoritos={agregarAFavoritos}       // Callback para agregar
+                  />
+
+
+
+
         </div>
-      </main>
-    </section>
+        <div className="border p-2">Div 2</div>
+        {/* <!-- Fila 2 --> */}
+        <div className="border p-2">Div 3
+          <div className="pantalla1">
+            {pantalla1Content}
+          </div>
+          <div className="pantallaTipo flex items-center justify-center p-2 grid grid-cols-2">
+            <div className="pant_tipo_hijo grid grid-rows-1">{pantallaTipoContent}</div>
+          </div>
+        </div>
+        <div className="border p-2">Div 4
+        <div className="pantalla2 flex items-center justify-center">{pantalla2Content}</div>
+        </div>
+        {/* <!-- Fila 3 --> */}
+        <div className="pantalla3 border p-2">Div 5
+        {pantalla3Content}
+        </div>
+        <div className="border  p-2 grid grid-cols-2" >Div 6
+          <div className="pantalla4 grid grid-rows-1">
+            <div className="ubicacion p-2">
+              {pantalla4bContent && pantallaTipoContent ? (
+                // Verificar si pantalla4bContent incluye el texto "No se encontraron ubicaciones"
+                pantalla4bContent.props?.children?.props?.children === "No se encontraron ubicaciones." ? (
+                  <img
+                    src="./src/img/mapa_pregunta.png"
+                    alt="mapa_buscar"
+                    className="mapa"
+                  />
+                ) : (
+                  <img
+                    src="./src/img/mapa_poke.png"
+                    alt="img_mapa"
+                    className="mapa"
+                  />
+                )
+              ) : null}
+            </div>
+            <div className="pant4_2">{pantalla4bContent}</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {/* <!-- Columna Derecha --> */}
+    <div className="hidden md:block md:min-w-[50px] lg:min-w-[80px] p-2">
+      <div className="h-full">Columna Derecha</div>
+    </div>
+  </div>
+</div>
+
+
+    </main>
+
+
+
+
+
   );
 };
 

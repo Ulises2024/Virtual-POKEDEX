@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import '../Buscar/Buscar.css';
 
 export default function Buscar({ onPokemonFetched }) {
   const [pokemonName, setPokemonName] = useState("");
-  const [data, setData] = useState(null); // Declara un estado para "data"
-  
 
   const buscarPokemon = async () => {
     try {
@@ -16,26 +15,33 @@ export default function Buscar({ onPokemonFetched }) {
     }
   };
 
+  const manejarEnter = (e) => {
+    if (e.key === "Enter") {
+      buscarPokemon();
+    }
+  };
+
   return (
     <div className="text-center grid grid-cols-1 gap-4 w-full max-w-md mx-auto py-10">
       {/* Título */}
       <h1 className="text-2xl font-bold col-span-1">Buscar Pokémon</h1>
 
       {/* Input y botón en una fila de dos columnas */}
-      <div className="grid grid-cols-12 items-center  m-3">
+      <div className="grid grid-cols-12 items-center m-3">
         {/* Input */}
         <input
           type="text"
           placeholder="Nombre del Pokémon"
           value={pokemonName}
           onChange={(e) => setPokemonName(e.target.value)}
-          className="col-span-10 border text-black p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+          onKeyDown={manejarEnter} // Detectar la tecla Enter
+          className="input_lupa col-span-10 border text-black p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
 
         {/* Botón con SVG */}
         <button
           onClick={buscarPokemon}
-          className="col-span-2 bg-blue-500 text-white p-2.5 rounded flex items-center justify-center hover:bg-blue-600 transition"
+          className="btn_lupa col-span-2 bg-blue-500 text-white p-2.5 rounded flex items-center justify-center hover:bg-blue-600 transition"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -56,6 +62,5 @@ export default function Buscar({ onPokemonFetched }) {
         </button>
       </div>
     </div>
-
   );
 }

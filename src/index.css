@@ -39,9 +39,9 @@ body {
     position: absolute;/* Fija la posición dentro de .pokedex */
     background-color: rgb(8, 8, 8);
     top: 29.5%;
-    left: 9.2%;
+    left: 15%;
     height: 32vh;
-    width: 35%;
+    width: 29%;
     border-radius: 10px;
     border: solid 3px black;
     overflow: hidden;
@@ -51,7 +51,7 @@ body {
 .pantallaTipo {
     position: absolute;
     top: 61.3%;
-    left: 20%;
+    left: 23%;
     width: 19.3vw;
     height: 6vh;
     
@@ -98,27 +98,34 @@ body {
 
 .pantalla2{
     position: absolute; 
-    background-color: rgb(8, 8, 8);
-    top: 33%;
-    left: 60%;
-    height: 18vh;
+
+    top: 30%;
+    left: 56.8%;
+    height: 30vh;
     width: 25vw;
     border-radius: 10px;
-    border: solid 3px black;   
+    border: solid 3px #f1f1f1;   
     overflow: hidden; 
     overflow-y: auto;
+    color: white;
 }
 
 .pantalla3{
     position: absolute;
-    height: 10.4vh;
-    width: 12.7vw;
-    bottom: 9%;
-    left: 14.2%;
+    height: 12vh;
+    width: 15vw;
+    bottom: 7%;
+    background-color: #00C57D;
+    left: 15%;
     border-radius: 1vw;
     border: solid 3px black;    
     padding: 1%;
-    font-size: 85%;
+    font-size: 75%;
+    position: absolute;
+    overflow: hidden; 
+    padding: 1%;
+
+    overflow-y: auto;
 }
 
 .pantalla4 .pant4_1 {
@@ -136,6 +143,21 @@ body {
     overflow-y: auto;
 }
 
+.ubicacion img{
+    position: absolute;
+    top: 70%;
+    left: 56%;
+    height: 20vh;
+}
 
-
-
+.pantalla4 .pant4_2 {
+    position: absolute;
+    /* background-color: #E3E3E3; */
+    bottom: 6%;
+    left: 68%;
+    height: 24vh;
+    width: 16.5vw;
+    border-radius: 15px;
+    border: solid 3px white;
+    overflow-y: auto;
+}
