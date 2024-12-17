@@ -24,7 +24,13 @@ export default function BtnVolver({
             setPantalla1Content(
               <Buscar
                 onPokemonFetched={(data) => {
-                  updatePantallas(data); // Actualiza las pantallas con los datos del Pokémon
+                  updatePantallas(data,
+                    setPantalla1Content,
+                    setPantallaTipoContent,
+                    setPantalla2Content,
+                    setPantalla3Content,
+                    setPantalla4aContent,
+                    setPantalla4bContent); // Actualiza las pantallas con los datos del Pokémon
                 }}
               />
             );

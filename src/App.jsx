@@ -17,7 +17,13 @@ const App = () => {
         setPantalla1Content(
           <Buscar
             onPokemonFetched={(data) => {
-              handleDataUpdate(data);
+              updatePantallas(data,
+                setPantalla1Content,
+                setPantallaTipoContent,
+                setPantalla2Content,
+                setPantalla3Content,
+                setPantalla4aContent,
+                setPantalla4bContent);
             }}
           />
         );
